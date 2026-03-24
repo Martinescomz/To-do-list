@@ -17,5 +17,8 @@ Route::put('/task/{id}', [TaskController::class, 'update']);
 //Route DELETE (delete information) route for delete tasks
 Route::delete('/task/{id}', [TaskController::class, 'destroy']);
 
+//Route PUT for change states to task 
+Route::put('/task/complete/{id}', [TaskController::class, 'complete']);
+
 
 

@@ -62,6 +62,7 @@ class TaskController extends Controller
             'priority',
             'deadline',
         ]));
+
         
         return redirect('/') -> with('msg', 'Task updated');
     }
@@ -72,5 +73,15 @@ class TaskController extends Controller
         $task -> delete();
 
         return redirect('/') -> with('msg', 'Deleted task');
+    }
+
+    public function complete($id){
+        $task = Task::findOrFail($id);
+
+        $task -> completed = !$task -> completed;
+
+        $task -> save();
+
+        return redirect('/') -> with('msg', 'Completed task');
     }
 }

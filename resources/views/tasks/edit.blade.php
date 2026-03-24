@@ -30,7 +30,7 @@
                                         @case (1)
                                             <option value="1" selected>Low</option>
                                             <option value="2">Medium</option>
-                                            <option value="3">high</option>
+                                            <option value="3">High</option>
                                         @break
                                         @case (2)
                                             <option value="1">Low</option>
@@ -42,6 +42,10 @@
                                             <option value="2">Medium</option>
                                             <option value="3" selected>High</option>
                                         @break
+                                        @default
+                                            <option value="1">Low</option>
+                                            <option value="2">Medium</option>
+                                            <option value="3">High</option>
                                     @endswitch
                                 </select>
                             </div>

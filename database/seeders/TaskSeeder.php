@@ -22,7 +22,7 @@ class TaskSeeder extends Seeder
                 'title' => Str::random(10),
                 'description' => Str::random(20),
                 'completed' => rand(0,1),
-                'priority' => rand(0,3),
+                'priority' => rand(1,3),
                 'deadline' => now()->addDays(rand(1,10)),
                 'created_at' => now(),
                 'updated_at' => now(),

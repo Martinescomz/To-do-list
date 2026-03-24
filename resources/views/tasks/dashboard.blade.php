@@ -44,44 +44,58 @@
                 <div id="taskList" class="task-list-container">
                     @if(count($tasks) >=1)
                     <!-- Tasks injected here -->
-                       @foreach ($tasks as $task) 
-                        <div class="task-item d-flex align-items-start gap-3">
-                            <div class="pt-1">
-                                <input class="form-check-input" type="checkbox" style="width: 1.25rem; height: 1.25rem; cursor: pointer; border-radius: 0.25rem;">
-                            </div>
-                            <div class="flex-grow-1">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h5 class="mb-1" style="font-size: 1rem; font-weight: 500;">{{$task -> title}}</h5>
-                                        <div class="d-flex gap-2 align-items-center">
-                                            @switch($task->priority)
-                                                @case ($task->priority == 1)
-                                                    <span class="status-badge badge-low">low</span>
-                                                @break
-                                                @case ($task->priority == 2)
-                                                    <span class="status-badge badge-medium">medium</span>
-                                                @break
-                                                @case ($task->priority == 3)
-                                                    <span class="status-badge badge-high">high</span>
-                                                @break
-                                            @endswitch
-                                            <span class="text-muted" style="font-size: 0.75rem;">• {{$task -> deadline -> format('d/m/Y')}}</span>
-                                        </div>
-                                        <p class="text-muted small mt-2 mb-0">{{$task -> description}}</p>
+                       @foreach ($tasks as $task)
+                            <div class="task-item d-flex align-items-start gap-3">
+                                <form action="/task/complete/{{$task -> id}}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="pt-1">
+                                        <input class="form-check-input"  name="completed" type="submit" style="width: 1.25rem; height: 1.25rem; cursor: pointer; border-radius: 0.25rem;">
                                     </div>
-                                    <div class="d-flex gap-1">
-                                        <!--button edit-->
-                                        <a href="/task/edit/{{$task -> id}}" class="btn btn-sm text-muted"><i class="bi bi-pencil"></i></a>
-                                        <!--Button trash-->
-                                        <form action="/task/{{$task -> id}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm text-muted"><i class="bi bi-trash"></i></button>
-                                        </form>
+                                </form>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="mb-1" style="font-size: 1rem; font-weight: 500;">
+                                                @if($task->completed)
+                                                    <s>{{$task -> title}}</s>
+                                                @else
+                                                    {{$task -> title}}
+                                                @endif
+                                            </h5>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                @if($task->completed)
+                                                    <span class="badge text-bg-success">Completed</span>
+                                                @else    
+                                                    @switch($task->priority)
+                                                        @case (1)
+                                                            <span class="status-badge badge-low">low</span>
+                                                        @break
+                                                        @case (2)
+                                                            <span class="status-badge badge-medium">medium</span>
+                                                        @break
+                                                        @case (3)
+                                                            <span class="status-badge badge-high">high</span>
+                                                        @break
+                                                    @endswitch
+                                                @endif
+                                                <span class="text-muted" style="font-size: 0.75rem;">• {{$task -> deadline -> format('d/m/Y')}}</span>
+                                            </div>
+                                            <p class="text-muted small mt-2 mb-0">{{$task -> description}}</p>
+                                        </div>
+                                        <div class="d-flex gap-1">
+                                            <!--button edit-->
+                                            <a href="/task/edit/{{$task -> id}}" class="btn btn-sm text-muted"><i class="bi bi-pencil"></i></a>
+                                            <!--Button trash-->
+                                            <form action="/task/{{$task -> id}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm text-muted"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     @else
                     <div class="text-center py-5">
