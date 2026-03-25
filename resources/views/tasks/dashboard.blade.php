@@ -4,39 +4,26 @@
 
 @section('content')
 
-<nav class="navbar nav-minimal mb-5">
-        <div class="container py-3">
-            <a class="navbar-brand fw-bold text-dark fs-4" href="/">TaskMaster</a>
-            <a href="/task/create" class="btn btn-minimal">
-                Nova Tarefa
-            </a>
-        </div>
-    </nav>
-@if(session('msg'))
-    <div class="alert alert-success" role="alert">
-        {{session('msg')}}
-    </div>
-@endif
 
     <div class="container animate-fade-in">
         <div class="row"
             <div class="col-lg-7 mx-auto">
                 <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
                     <div>
-                        <h1 class="h3 fw-bold mb-1">Tarefas</h1>
+                        <h1 class="h3 fw-bold mb-1">Tasks</h1>
                         <p class="text-muted small mb-0" id="taskCounter">
                             @if($pending > 0)
-                                {{$pending}} tarefas pendentes
+                                {{$pending}} Pending tasks
                             @else 
-                                nenhuma tarefa perndente
+                                There is't pending tasks
                             @endif
                         </p>
                     </div>
                     <form method="get" action="/">
                         <select name="filter" class="form-select-minimal" onchange="this.form.submit()">
-                            <option value="" {{ request('filter') == '' ? 'selected' : '' }}>Todas</option>
-                            <option value="0" {{ request('filter') == '0' ? 'selected' : '' }}>Pendentes</option>
-                            <option value="1" {{ request('filter') == '1' ? 'selected' : '' }}>Concluídas</option>
+                            <option value="" {{ request('filter') == '' ? 'selected' : '' }}>All</option>
+                            <option value="0" {{ request('filter') == '0' ? 'selected' : '' }}>Pending</option>
+                            <option value="1" {{ request('filter') == '1' ? 'selected' : '' }}>Completed</option>
                         </select>
                     </form>
                 </div>
@@ -50,7 +37,7 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="pt-1">
-                                        <input class="form-check-input"  name="completed" type="submit" style="width: 1.25rem; height: 1.25rem; cursor: pointer; border-radius: 0.25rem;">
+                                        <button class="form-check-input"  name="completed" style="width: 1.25rem; height: 1.25rem; cursor: pointer; border-radius: 0.25rem;"></button>
                                     </div>
                                 </form>
                                 <div class="flex-grow-1">
@@ -69,13 +56,13 @@
                                                 @else    
                                                     @switch($task->priority)
                                                         @case (1)
-                                                            <span class="status-badge badge-low">low</span>
+                                                            <span class="status-badge badge-low">Low</span>
                                                         @break
                                                         @case (2)
-                                                            <span class="status-badge badge-medium">medium</span>
+                                                            <span class="status-badge badge-medium">Medium</span>
                                                         @break
                                                         @case (3)
-                                                            <span class="status-badge badge-high">high</span>
+                                                            <span class="status-badge badge-high">High</span>
                                                         @break
                                                     @endswitch
                                                 @endif
@@ -99,7 +86,7 @@
                         @endforeach
                     @else
                     <div class="text-center py-5">
-                        <p class="text-muted">Tudo limpo por aqui.</p>
+                        <p class="text-muted">All clear here.</p>
                     </div>
                     @endif
                 </div>

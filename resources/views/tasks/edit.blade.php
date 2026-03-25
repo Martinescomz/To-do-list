@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Edit {{$task -> title}}')
+@section('title', 'Edit' . $task -> title)
 
 @section('content')
 
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-5 mx-auto">
                 <div class="minimal-card shadow-sm">
-                    <h2 class="h4 fw-bold mb-4">Editing task</h2>
+                    <h2 class="h4 fw-bold mb-4">Edit task</h2>
                     <form id="taskForm"  action="/task/{{$task -> id}}" method="post">
                         @csrf
                         @method('PUT')

@@ -16,13 +16,15 @@ class TaskController extends Controller
         //Validation if have something in $request 
         if($request->filled('filter')){
             //Make and takeing a query to table task
-            $query->where('completed', $request->filter);
+            $query->where('completed', $request->filter)
+            ->orderBy('updated_at', 'DESC');
 
             $tasks = $query->get();
 
 
         }else{
-            $tasks=Task::all();
+            $tasks=Task::orderBy('created_at', 'DESC')->get();
+            //dd($tasks);
         }
 
         //Validation to see if have tasks pending

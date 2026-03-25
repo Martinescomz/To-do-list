@@ -18,8 +18,7 @@
                         </div>
                         <div class="mb-4">
                             <label class="form-label text-muted small fw-medium">DESCRIPTION</label>
-                            <textarea id="taskDesc" name="description" class="form-control form-control-minimal" rows="3"
-                                placeholder="Optional"></textarea>
+                            <textarea id="taskDesc" name="description" class="form-control form-control-minimal" rows="3" placeholder="Task" required></textarea>
                         </div>
                         <div class="row mb-4">
                             <div class="col-6">
@@ -36,8 +35,8 @@
                             </div>
                         </div>
                         <div class="d-flex gap-2 pt-2">
-                            <button type="submit" class="btn btn-minimal flex-grow-1">Criar</button>
-                            <a href="/" class="btn btn-outline-minimal">Cancelar</a>
+                            <button type="submit" class="btn btn-minimal flex-grow-1">Create task</button>
+                            <a href="/" class="btn btn-outline-minimal">Cancel</a>
                         </div>
                     </form>
                 </div>

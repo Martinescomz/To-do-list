@@ -13,6 +13,19 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+    <nav class="navbar nav-minimal mb-5">
+        <div class="container py-3">
+            <a class="navbar-brand fw-bold text-dark fs-4" href="/">TaskMaster</a>
+            <a href="/task/create" class="btn btn-minimal">
+                New Task
+            </a>
+        </div>
+    </nav>
+    @if(session('msg'))
+        <div class="alert alert-success" role="alert">
+            {{session('msg')}}
+        </div>
+    @endif
       
         @yield('content')
 
