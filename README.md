@@ -27,3 +27,10 @@ Projeto de gerenciamento de tarefas desenvolvido em Laravel.
 - 9° php artisan migrate
 - 10° php artisan serve
 
+## Telas
+- tasks.dashboard
+![alt text](image.png)
+- tasks.create
+![alt text](image-1.png)
+- tasks.edit
+![alt text](image-2.png)
